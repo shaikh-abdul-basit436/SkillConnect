@@ -51,6 +51,7 @@ skills = {
         "React Native",
         "Firebase",
         "Swift"
+        "Kotlin"
     ],
 
     "Database":[
