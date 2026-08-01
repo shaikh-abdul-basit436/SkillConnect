@@ -1,0 +1,373 @@
+{% extends "base.html" %}
+
+{% block title %}
+
+Dashboard
+
+{% endblock %}
+
+{% block page_title %}
+
+Dashboard
+
+{% endblock %}
+
+{% block content %}
+
+<div class="dashboard-page">
+
+    <div class="hero-banner">
+
+        <h2>
+
+            Welcome back,
+            {{ current_user.name }} 👋
+
+        </h2>
+
+        <p>
+
+            Learn new skills, teach others and grow your professional network.
+
+        </p>
+
+    </div>
+
+    <div class="stats-grid">
+
+        <div class="modern-card">
+
+            <div class="stat">
+
+                <div>
+
+                    <small>
+
+                        Teaching Skills
+
+                    </small>
+
+                    <h2>
+
+                        {{ teach_skills|length }}
+
+                    </h2>
+
+                </div>
+
+                <i class="fa-solid fa-chalkboard-user fa-2x"></i>
+
+            </div>
+
+        </div>
+
+        <div class="modern-card">
+
+            <div class="stat">
+
+                <div>
+
+                    <small>
+
+                        Learning Skills
+
+                    </small>
+
+                    <h2>
+
+                        {{ learn_skills|length }}
+
+                    </h2>
+
+                </div>
+
+                <i class="fa-solid fa-book-open-reader fa-2x"></i>
+
+            </div>
+
+        </div>
+
+        <div class="modern-card">
+
+            <div class="stat">
+
+                <div>
+
+                    <small>
+
+                        Rating
+
+                    </small>
+
+                    <h2>
+
+                        {{ current_user.rating }}
+
+                    </h2>
+
+                </div>
+
+                <i class="fa-solid fa-star fa-2x"></i>
+
+            </div>
+
+        </div>
+
+        <div class="modern-card">
+
+            <div class="stat">
+
+                <div>
+
+                    <small>
+
+                        Department
+
+                    </small>
+
+                    <h2>
+
+                        {{ current_user.department }}
+
+                    </h2>
+
+                </div>
+
+                <i class="fa-solid fa-building-columns fa-2x"></i>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="dashboard-content">
+
+        <div class="left-dashboard">
+
+            <div class="modern-card">
+
+                <h4>
+
+                    Skills I Can Teach
+
+                </h4>
+
+                <div class="skill-container">
+
+                    {% for skill in teach_skills %}
+
+                    <span class="skill-chip">
+
+                        {{ skill.skill_name }}
+
+                    </span>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+            <div class="modern-card">
+
+                <h4>
+
+                    Skills I Want To Learn
+
+                </h4>
+
+                <div class="skill-container">
+
+                    {% for skill in learn_skills %}
+
+                    <span class="skill-chip learn">
+
+                        {{ skill.skill_name }}
+
+                    </span>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+            <div class="modern-card">
+
+                <h4>
+
+                    Quick Actions
+
+                </h4>
+
+                <div class="quick-grid">
+
+                    <a href="/skills" class="quick-action">
+
+                        <i class="fa-solid fa-code fa-2x"></i>
+
+                        <h5>
+
+                            Manage Skills
+
+                        </h5>
+
+                        <small>
+
+                            Update your teaching & learning skills
+
+                        </small>
+
+                    </a>
+
+                    <a href="/matches" class="quick-action">
+
+                        <i class="fa-solid fa-user-group fa-2x"></i>
+
+                        <h5>
+
+                            Find Matches
+
+                        </h5>
+
+                        <small>
+
+                            Discover students with similar interests
+
+                        </small>
+
+                    </a>
+
+                    <a href="/sessions" class="quick-action">
+
+                        <i class="fa-solid fa-calendar-check fa-2x"></i>
+
+                        <h5>
+
+                            Book Session
+
+                        </h5>
+
+                        <small>
+
+                            Schedule a learning session
+
+                        </small>
+
+                    </a>
+
+                    <a href="/profile" class="quick-action">
+
+                        <i class="fa-solid fa-user-pen fa-2x"></i>
+
+                        <h5>
+
+                            Edit Profile
+
+                        </h5>
+
+                        <small>
+
+                            Keep your profile updated
+
+                        </small>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="right-dashboard">
+
+            <div class="modern-card">
+
+                <h4>
+
+                    Profile Summary
+
+                </h4>
+
+                <div class="profile-summary">
+
+                    <p>
+
+                        <strong>Name :</strong>
+
+                        {{ current_user.name }}
+
+                    </p>
+
+                    <p>
+
+                        <strong>Email :</strong>
+
+                        {{ current_user.email }}
+
+                    </p>
+
+                    <p>
+
+                        <strong>Department :</strong>
+
+                        {{ current_user.department }}
+
+                    </p>
+
+                    <p>
+
+                        <strong>Year :</strong>
+
+                        {{ current_user.year }}
+
+                    </p>
+
+                    <p>
+
+                        <strong>Rating :</strong>
+
+                        ⭐ {{ current_user.rating }}
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="modern-card">
+
+                <h4>
+
+                    Account Status
+
+                </h4>
+
+                <p>
+
+                    ✔ Profile Active
+
+                </p>
+
+                <p>
+
+                    ✔ Ready to Teach
+
+                </p>
+
+                <p>
+
+                    ✔ Ready to Learn
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

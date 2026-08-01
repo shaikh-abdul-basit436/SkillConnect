@@ -1,0 +1,63 @@
+<div class="topbar">
+
+    <div class="topbar-left">
+
+        <button class="menu-btn" id="menu-btn">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <div>
+
+           <h3 class="page-title" id="pageTitle">
+
+    Dashboard
+
+</h3>
+
+            <small class="page-subtitle">
+
+                Welcome to SkillConnect
+
+            </small>
+
+        </div>
+
+    </div>
+
+    <div class="topbar-right">
+
+        <button class="theme-btn" id="theme-toggle">
+
+            <i class="fa-solid fa-moon"></i>
+
+        </button>
+
+        <a href="/profile" class="profile-shortcut">
+
+            <div class="mini-avatar">
+
+                {{ current_user.name[0]|upper }}
+
+            </div>
+
+            <div class="profile-text">
+
+                <strong>
+
+                    {{ current_user.name }}
+
+                </strong>
+
+                <small>
+
+                    {{ current_user.department }}
+
+                </small>
+
+            </div>
+
+        </a>
+
+    </div>
+
+</div>

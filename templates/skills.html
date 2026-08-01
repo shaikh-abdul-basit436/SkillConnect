@@ -1,0 +1,539 @@
+{% extends "base.html" %}
+
+{% block title %}
+Manage Skills
+{% endblock %}
+
+{% block content %}
+
+<div class="skills-page">
+
+    <!-- ================= HEADER ================= -->
+
+    <div class="skills-header">
+
+        <div>
+
+            <h2>Manage Your Skills</h2>
+
+            <p>
+                Select the skills you can teach and the skills you want to learn.
+            </p>
+
+        </div>
+
+        <button
+            type="submit"
+            form="skillsForm"
+            class="btn-modern">
+
+            <i class="fa-solid fa-floppy-disk"></i>
+
+            Save Changes
+
+        </button>
+
+    </div>
+
+    <!-- ================= FORM ================= -->
+
+    <form
+        id="skillsForm"
+        method="POST">
+
+        <div class="skills-layout">
+
+            <!-- ===================================== -->
+            <!-- LEFT PANEL -->
+            <!-- ===================================== -->
+
+            <div class="skills-left">
+
+                <div class="card-box">
+
+                    <div class="browse-header">
+
+                        <h3>
+
+                            Browse Skills
+
+                        </h3>
+
+                        <div class="search-box">
+
+                            <i class="fa-solid fa-magnifying-glass"></i>
+
+                            <input
+                                type="text"
+                                id="skillSearch"
+                                placeholder="Search any skill...">
+
+                        </div>
+
+                    </div>
+
+                    <div
+                        class="accordion"
+                        id="skillsAccordion">
+
+                        {% for category, skills in grouped_skills.items() %}
+
+                        <div class="accordion-item">
+
+                            <h2
+                                class="accordion-header"
+                                id="heading{{ loop.index }}">
+
+                                <button
+                                    class="accordion-button collapsed"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#collapse{{ loop.index }}"
+                                    aria-expanded="false"
+                                    aria-controls="collapse{{ loop.index }}">
+
+                                    {{ category }}
+
+                                </button>
+
+                            </h2>
+
+                            <div
+                                id="collapse{{ loop.index }}"
+                                class="accordion-collapse collapse"
+                                data-bs-parent="#skillsAccordion">
+
+                                <div class="accordion-body">
+
+                                    <div class="row g-3">
+				{% for skill in skills %}
+
+<div
+    class="col-lg-6 col-md-6 col-sm-12 skill-item"
+    data-name="{{ skill.skill_name|lower }}">
+
+    <div class="skill-card">
+
+        <!-- ================= Skill Information ================= -->
+
+        <div class="skill-info">
+
+            <h5>
+
+                {{ skill.skill_name }}
+
+            </h5>
+
+            <span>
+
+                {{ category }}
+
+            </span>
+
+        </div>
+
+        <!-- ================= Teach / Learn ================= -->
+
+        <div class="skill-actions">
+
+            <label class="toggle teach">
+
+                <input
+                    type="checkbox"
+                    name="teach_skills"
+                    value="{{ skill.id }}"
+                    {% if skill.id in teach_ids %}
+                    checked
+                    {% endif %}>
+
+                <span>
+
+                    Teach
+
+                </span>
+
+            </label>
+
+            <label class="toggle learn">
+
+                <input
+                    type="checkbox"
+                    name="learn_skills"
+                    value="{{ skill.id }}"
+                    {% if skill.id in learn_ids %}
+                    checked
+                    {% endif %}>
+
+                <span>
+
+                    Learn
+
+                </span>
+
+            </label>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endfor %}
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ===================================== -->
+            <!-- RIGHT PANEL STARTS HERE -->
+            <!-- ===================================== -->
+
+            <div class="skills-right">
+	                <!-- ===================================== -->
+                <!-- SKILLS I CAN TEACH -->
+                <!-- ===================================== -->
+
+                <div class="card-box">
+
+                    <div class="preview-header">
+
+                        <h4>
+
+                            Skills I Can Teach
+
+                        </h4>
+
+                        <span
+                            id="teachCount"
+                            class="count-badge">
+
+                            {{ teach_ids|length }}
+
+                        </span>
+
+                    </div>
+
+                    <div
+                        id="teachPreview"
+                        class="selected-skills">
+
+                        {% for category, skills in grouped_skills.items() %}
+
+                            {% for skill in skills %}
+
+                                {% if skill.id in teach_ids %}
+
+                                    <span class="skill-chip">
+
+                                        {{ skill.skill_name }}
+
+                                    </span>
+
+                                {% endif %}
+
+                            {% endfor %}
+
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+                <!-- ===================================== -->
+                <!-- SKILLS I WANT TO LEARN -->
+                <!-- ===================================== -->
+
+                <div class="card-box">
+
+                    <div class="preview-header">
+
+                        <h4>
+
+                            Skills I Want To Learn
+
+                        </h4>
+
+                        <span
+                            id="learnCount"
+                            class="count-badge">
+
+                            {{ learn_ids|length }}
+
+                        </span>
+
+                    </div>
+
+                    <div
+                        id="learnPreview"
+                        class="selected-skills">
+
+                        {% for category, skills in grouped_skills.items() %}
+
+                            {% for skill in skills %}
+
+                                {% if skill.id in learn_ids %}
+
+                                    <span class="skill-chip learn">
+
+                                        {{ skill.skill_name }}
+
+                                    </span>
+
+                                {% endif %}
+
+                            {% endfor %}
+
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+                <!-- ===================================== -->
+                <!-- TIPS -->
+                <!-- ===================================== -->
+
+                <div class="card-box">
+
+                    <h4>
+
+                        Tips
+
+                    </h4>
+
+                    <ul class="tips-list">
+
+                        <li>
+
+                            Select only the skills you are confident teaching.
+
+                        </li>
+
+                        <li>
+
+                            Choose learning skills you genuinely want to improve.
+
+                        </li>
+
+                        <li>
+
+                            Keep your profile updated for better skill matching.
+
+                        </li>
+
+                        <li>
+
+                            A skill can either be Teach or Learn, not both.
+
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+	    </form>
+
+</div>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const searchInput = document.getElementById("skillSearch");
+
+    const teachBoxes = document.querySelectorAll("input[name='teach_skills']");
+
+    const learnBoxes = document.querySelectorAll("input[name='learn_skills']");
+
+    const teachPreview = document.getElementById("teachPreview");
+
+    const learnPreview = document.getElementById("learnPreview");
+
+    const teachCount = document.getElementById("teachCount");
+
+    const learnCount = document.getElementById("learnCount");
+
+    /* ==========================================
+                    SEARCH
+    ========================================== */
+
+    if(searchInput){
+
+        searchInput.addEventListener("keyup",function(){
+
+            const value=this.value.toLowerCase();
+
+            document.querySelectorAll(".accordion-item").forEach(section=>{
+
+                let found=false;
+
+                section.querySelectorAll(".skill-item").forEach(item=>{
+
+                    const skill=item.dataset.name;
+
+                    if(skill.includes(value)){
+
+                        item.style.display="";
+
+                        found=true;
+
+                    }
+
+                    else{
+
+                        item.style.display="none";
+
+                    }
+
+                });
+
+                const collapse=section.querySelector(".accordion-collapse");
+
+                if(value===""){
+
+                    bootstrap.Collapse.getOrCreateInstance(collapse).hide();
+
+                }
+
+                else if(found){
+
+                    bootstrap.Collapse.getOrCreateInstance(collapse).show();
+
+                }
+
+                else{
+
+                    bootstrap.Collapse.getOrCreateInstance(collapse).hide();
+
+                }
+
+            });
+
+        });
+
+    }
+
+    /* ==========================================
+               TEACH / LEARN MUTUAL EXCLUSIVE
+    ========================================== */
+
+    teachBoxes.forEach(box=>{
+
+        box.addEventListener("change",()=>{
+
+            if(box.checked){
+
+                learnBoxes.forEach(l=>{
+
+                    if(l.value===box.value){
+
+                        l.checked=false;
+
+                    }
+
+                });
+
+            }
+
+            refreshPreview();
+
+        });
+
+    });
+
+    learnBoxes.forEach(box=>{
+
+        box.addEventListener("change",()=>{
+
+            if(box.checked){
+
+                teachBoxes.forEach(t=>{
+
+                    if(t.value===box.value){
+
+                        t.checked=false;
+
+                    }
+
+                });
+
+            }
+
+            refreshPreview();
+
+        });
+
+    });
+
+    /* ==========================================
+                    REFRESH PREVIEW
+    ========================================== */
+
+    function refreshPreview(){
+
+        teachPreview.innerHTML="";
+
+        learnPreview.innerHTML="";
+
+        let teachCounter=0;
+
+        let learnCounter=0;
+
+        teachBoxes.forEach(box=>{
+
+            if(box.checked){
+
+                teachCounter++;
+
+                const text=box.closest(".skill-card").querySelector("h5").innerText;
+
+                teachPreview.innerHTML+=
+                `<span class="skill-chip">${text}</span>`;
+
+            }
+
+        });
+
+        learnBoxes.forEach(box=>{
+
+            if(box.checked){
+
+                learnCounter++;
+
+                const text=box.closest(".skill-card").querySelector("h5").innerText;
+
+                learnPreview.innerHTML+=
+                `<span class="skill-chip learn">${text}</span>`;
+
+            }
+
+        });
+
+        teachCount.innerText=teachCounter;
+
+        learnCount.innerText=learnCounter;
+
+    }
+
+    refreshPreview();
+
+});
+
+</script>
+
+{% endblock %}

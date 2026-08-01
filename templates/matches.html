@@ -1,0 +1,167 @@
+{% extends "base.html" %}
+
+{% block title %}
+
+Matches
+
+{% endblock %}
+
+{% block page_title %}
+
+Matches
+
+{% endblock %}
+
+{% block content %}
+
+<div class="matches-page">
+
+    <div class="page-header">
+
+        <div>
+
+            <h2>
+
+                Smart Learning Partners
+
+            </h2>
+
+            <p>
+
+                Find students who can teach the skills you want to learn.
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="matches-grid">
+
+    {% if matches %}
+
+    {% for match in matches %}
+
+    <div class="match-card">
+
+        <div class="match-top">
+
+            <div class="initial-circle">
+
+                {{ match.user.name[0] }}
+
+            </div>
+
+            <div>
+
+                <h4>
+
+                    {{ match.user.name }}
+
+                </h4>
+
+                <small>
+
+                    {{ match.user.department }}
+
+                    •
+
+                    {{ match.user.year }}
+
+                </small>
+
+            </div>
+
+            <div class="match-percent">
+
+                {{ match.percentage }}%
+
+            </div>
+
+        </div>
+
+        <hr>
+
+        <h6>
+
+            Can Teach
+
+        </h6>
+
+        <div class="skill-container">
+
+            {% for skill in match.teach %}
+
+            <span class="skill-chip">
+
+                {{ skill.skill_name }}
+
+            </span>
+
+            {% endfor %}
+
+        </div>
+
+        <div class="match-buttons mt-4">
+
+            {% if match.status %}
+
+            <button
+            class="btn btn-secondary"
+            disabled>
+
+                {{ match.status }}
+
+            </button>
+
+            {% else %}
+
+            <a
+            href="/send_request/{{match.user.id}}"
+            class="btn-modern">
+
+                Send Request
+
+            </a>
+
+            {% endif %}
+
+            <a
+            href="/profile/{{match.user.id}}"
+            class="btn btn-outline-primary">
+
+                View Profile
+
+            </a>
+
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+    {% else %}
+
+    <div class="modern-card">
+
+        <h3>
+
+            No Matches Found
+
+        </h3>
+
+        <p>
+
+            Add more learning skills to improve matching.
+
+        </p>
+
+    </div>
+
+    {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}

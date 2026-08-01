@@ -1,0 +1,3074 @@
+/* ==========================================================
+                SKILLCONNECT PROFESSIONAL UI
+========================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+:root{
+
+    --primary:#6366f1;
+    --secondary:#06b6d4;
+    --success:#22c55e;
+    --danger:#ef4444;
+    --warning:#f59e0b;
+
+    --bg:#f5f7fb;
+    --card:#ffffff;
+    --sidebar:#ffffff;
+
+    --text:#1f2937;
+    --text-light:#64748b;
+
+    --border:#e5e7eb;
+
+    --shadow:0 12px 30px rgba(0,0,0,.08);
+
+    --radius:18px;
+
+    --transition:.35s ease;
+}
+
+/* ================= DARK THEME ================= */
+
+body.dark-theme{
+
+    --bg:#0f172a;
+
+    --card:#1e293b;
+
+    --sidebar:#111827;
+
+    --text:#ffffff;
+
+    --text-light:#cbd5e1;
+
+    --border:#334155;
+
+    --shadow:0 15px 35px rgba(0,0,0,.45);
+
+}
+
+/* ================= BODY ================= */
+
+body{
+
+    background:var(--bg);
+
+    color:var(--text);
+
+    transition:var(--transition);
+
+    overflow-x:hidden;
+
+}
+
+/* ================= LAYOUT ================= */
+
+.app-layout{
+
+    display:flex;
+
+    min-height:100vh;
+
+    width:100%;
+
+}
+
+.app-main{
+
+    margin-left:250px;
+
+    width:calc(100% - 250px);
+
+    min-height:100vh;
+
+    transition:var(--transition);
+
+    background:var(--bg);
+
+}
+
+body.sidebar-collapsed .app-main{
+
+    margin-left:80px;
+
+    width:calc(100% - 80px);
+
+}
+
+.page-wrapper{
+
+    padding:30px;
+
+}
+
+/* ================= SIDEBAR ================= */
+
+.sidebar{
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    width:250px;
+
+    height:100vh;
+
+    background:var(--sidebar);
+
+    border-right:1px solid var(--border);
+
+    box-shadow:var(--shadow);
+
+    transition:var(--transition);
+
+    overflow:hidden;
+
+    z-index:1000;
+
+}
+
+.sidebar.collapsed{
+
+    width:80px;
+
+}
+
+.sidebar-top{
+
+    padding:22px;
+
+}
+
+.brand{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    text-decoration:none;
+
+}
+
+.brand-logo{
+
+    width:55px;
+
+    height:55px;
+
+    border-radius:16px;
+
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:#fff;
+
+    font-size:20px;
+
+    font-weight:700;
+
+}
+
+.brand-text h4{
+
+    margin:0;
+
+    color:var(--text);
+
+    font-size:22px;
+
+    font-weight:700;
+
+}
+
+.brand-text small{
+
+    color:var(--text-light);
+
+}
+
+.sidebar.collapsed .brand-text{
+
+    display:none;
+
+}
+
+/* ================= MENU ================= */
+
+.sidebar-menu{
+
+    list-style:none;
+
+    padding:15px;
+
+}
+
+.sidebar-menu li{
+
+    margin-bottom:10px;
+
+}
+
+.sidebar-menu a{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:15px 18px;
+
+    text-decoration:none;
+
+    color:var(--text);
+
+    border-radius:15px;
+
+    transition:var(--transition);
+
+    font-weight:500;
+
+}
+
+.sidebar-menu a i{
+
+    width:24px;
+
+    text-align:center;
+
+    font-size:18px;
+
+}
+
+.sidebar-menu a:hover{
+
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+
+    color:white;
+
+    transform:translateX(5px);
+
+}
+
+.sidebar-menu a.active{
+
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+
+    color:white;
+
+}
+
+.sidebar.collapsed .sidebar-menu span{
+
+    display:none;
+
+}
+
+.sidebar.collapsed .sidebar-menu a{
+
+    justify-content:center;
+
+}
+
+/* ================= LOGOUT ================= */
+
+.sidebar-bottom{
+
+    position:absolute;
+
+    bottom:20px;
+
+    width:100%;
+
+    padding:15px;
+
+}
+
+.logout-btn{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:12px;
+
+    background:var(--danger);
+
+    color:white;
+
+    text-decoration:none;
+
+    padding:15px;
+
+    border-radius:15px;
+
+    transition:.3s;
+
+}
+
+.logout-btn:hover{
+
+    background:#dc2626;
+
+    color:white;
+
+}
+
+.sidebar.collapsed .logout-btn span{
+
+    display:none;
+
+}
+
+/* ================= TOPBAR ================= */
+
+.topbar{
+
+    height:75px;
+
+    background:var(--card);
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:0 30px;
+
+    border-bottom:1px solid var(--border);
+
+    position:sticky;
+
+    top:0;
+
+    z-index:999;
+
+}
+
+.topbar-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+}
+
+.menu-btn{
+
+    width:46px;
+
+    height:46px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:var(--bg);
+
+    color:var(--text);
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.menu-btn:hover{
+
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+
+    color:white;
+
+}
+
+.page-title{
+
+    margin:0;
+
+    font-size:28px;
+
+    font-weight:700;
+
+    color:var(--text);
+
+}
+
+.page-subtitle{
+
+    color:var(--text-light);
+
+}
+
+.topbar-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+}
+
+.theme-btn{
+
+    width:46px;
+
+    height:46px;
+
+    border:none;
+
+    border-radius:50%;
+
+    cursor:pointer;
+
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+
+    color:white;
+
+    transition:.4s;
+
+}
+
+.theme-btn:hover{
+
+    transform:rotate(180deg);
+
+}
+
+.profile-shortcut{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    text-decoration:none;
+
+}
+
+.mini-avatar{
+
+    width:48px;
+
+    height:48px;
+
+    border-radius:50%;
+
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:white;
+
+    font-weight:700;
+
+    font-size:18px;
+
+}
+
+.profile-text{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.profile-text strong{
+
+    color:var(--text);
+
+}
+
+.profile-text small{
+
+    color:var(--text-light);
+
+}
+/* ==========================================================
+                    DASHBOARD
+========================================================== */
+
+.dashboard-page{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:25px;
+
+}
+
+/* ================= HERO ================= */
+
+.hero-banner{
+
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+
+    color:#fff;
+
+    border-radius:24px;
+
+    padding:40px;
+
+    box-shadow:var(--shadow);
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.hero-banner::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:280px;
+
+    height:280px;
+
+    background:rgba(255,255,255,.08);
+
+    border-radius:50%;
+
+    top:-120px;
+
+    right:-80px;
+
+}
+
+.hero-banner h2{
+
+    font-size:34px;
+
+    font-weight:700;
+
+    margin-bottom:12px;
+
+}
+
+.hero-banner p{
+
+    font-size:16px;
+
+    opacity:.95;
+
+    margin:0;
+
+    max-width:650px;
+
+}
+
+/* ================= STATS ================= */
+
+.stats-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:20px;
+
+}
+
+.modern-card{
+
+    background:var(--card);
+
+    border-radius:20px;
+
+    padding:24px;
+
+    box-shadow:var(--shadow);
+
+    transition:.35s;
+
+    border:1px solid transparent;
+
+}
+
+.modern-card:hover{
+
+    transform:translateY(-8px);
+
+    border-color:rgba(99,102,241,.15);
+
+}
+
+.stat{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.stat h2{
+
+    margin-top:6px;
+
+    font-size:34px;
+
+    font-weight:700;
+
+    color:var(--text);
+
+}
+
+.stat small{
+
+    color:var(--text-light);
+
+    font-size:14px;
+
+}
+
+.stat i{
+
+    width:65px;
+
+    height:65px;
+
+    border-radius:18px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:#fff;
+
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+
+}
+
+/* ================= DASHBOARD LAYOUT ================= */
+
+.dashboard-content{
+
+    display:grid;
+
+    grid-template-columns:2fr 1fr;
+
+    gap:25px;
+
+}
+
+.left-dashboard,
+
+.right-dashboard{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:25px;
+
+}
+
+/* ================= SKILLS ================= */
+
+.skill-container{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:12px;
+
+    margin-top:20px;
+
+}
+
+.skill-chip{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    white-space:nowrap;
+
+    padding:10px 18px;
+
+    border-radius:30px;
+
+    background:linear-gradient(135deg,#19d3b4,#12b8e8);
+
+    color:white;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.skill-chip:hover{
+
+    transform:translateY(-3px);
+
+}
+
+.skill-chip.learn{
+
+    background:linear-gradient(135deg,#7c3aed,#8b5cf6);
+
+}
+.selected-skills{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:12px;
+
+    align-items:flex-start;
+
+    min-height:60px;
+
+}
+
+/* ================= SKILL CARD ================= */
+
+.skill-card{
+
+    background:var(--bg);
+
+    border:1px solid var(--border);
+
+    border-radius:16px;
+
+    padding:18px;
+
+    height:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:space-between;
+
+    transition:.3s;
+
+}
+.skill-card:hover{
+
+    transform:translateY(-5px);
+
+    border-color:#6366f1;
+
+}
+.skills-right .card-box{
+
+    margin-bottom:0;
+
+}
+/* ================= SEARCH BAR ================= */
+
+#skillSearch{
+
+    width:260px;
+
+    border-radius:35px;
+
+    background:var(--card);
+
+    color:var(--text);
+
+    border:1px solid var(--border);
+
+    padding:12px 20px;
+
+}
+
+body.dark-theme #skillSearch{
+
+    background:#11192b;
+
+    color:white;
+
+    border:1px solid #2d3956;
+
+}
+
+#skillSearch::placeholder{
+
+    color:#8b96a8;
+
+}
+
+#skillSearch:focus{
+
+    border-color:#5b5ff8;
+
+    box-shadow:none;
+
+}
+
+/* Skill Card Text */
+
+.skill-card strong{
+
+    color:var(--text);
+
+    font-size:19px;
+
+    font-weight:700;
+
+}
+
+.skill-card small{
+
+    color:var(--text-light);
+
+    font-size:13px;
+
+}
+
+/* ================= ACCORDION ================= */
+
+.accordion-button{
+
+    background:linear-gradient(135deg,#4f46e5,#0ea5e9);
+
+    color:#fff;
+
+    font-weight:600;
+
+    min-height:64px;
+
+    border-radius:18px !important;
+
+    box-shadow:none;
+
+}
+
+.accordion-button:not(.collapsed){
+
+    background:linear-gradient(135deg,#5b5ff8,#13b9e8);
+
+    color:white;
+
+}
+
+.accordion-button::after{
+
+    filter:brightness(0) invert(1);
+
+}
+
+.accordion-button:not(.collapsed){
+
+    background:linear-gradient(135deg,#5b5ff8,#13b9e8);
+
+    color:white;
+
+}
+
+.accordion-button::after{
+
+    filter:brightness(0) invert(1);
+
+}
+
+/* ================= TEACH LEARN BUTTON ================= */
+
+.toggle{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    padding:7px 16px;
+
+    border-radius:30px;
+
+    cursor:pointer;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.toggle input{
+
+    display:none;
+
+}
+
+.toggle.teach{
+
+    background:#d1fae5;
+
+    color:#059669;
+
+}
+
+.toggle.learn{
+
+    background:#ede9fe;
+
+    color:#6d28d9;
+
+}
+
+.toggle.teach:has(input:checked){
+
+    background:#10b981;
+
+    color:white;
+
+}
+
+.toggle.learn:has(input:checked){
+
+    background:#7c3aed;
+
+    color:white;
+
+}
+
+/* ================= QUICK ACTIONS ================= */
+
+.quick-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:18px;
+
+    margin-top:20px;
+
+}
+
+.quick-action{
+
+    background:var(--bg);
+
+    text-decoration:none;
+
+    color:var(--text);
+
+    padding:25px;
+
+    border-radius:18px;
+
+    text-align:center;
+
+    transition:.35s;
+
+    border:1px solid transparent;
+
+}
+
+.quick-action:hover{
+
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+
+    color:#fff;
+
+    transform:translateY(-8px);
+
+}
+
+.quick-action i{
+
+    margin-bottom:15px;
+
+}
+
+.quick-action h5{
+
+    font-weight:600;
+
+    margin-bottom:8px;
+
+}
+
+.quick-action small{
+
+    opacity:.85;
+
+}
+
+/* ================= PROFILE SUMMARY ================= */
+
+.profile-summary{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+    margin-top:15px;
+
+}
+
+.profile-summary p{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    border-bottom:1px solid var(--border);
+
+    padding-bottom:10px;
+
+}
+
+.profile-summary p:last-child{
+
+    border-bottom:none;
+
+}
+
+.profile-summary strong{
+
+    color:var(--text);
+
+}
+
+/* ================= ACCOUNT STATUS ================= */
+
+.status-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+}
+
+.status-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    color:var(--text);
+
+}
+
+.status-item i{
+
+    color:var(--success);
+
+    font-size:18px;
+
+}
+
+/* ================= CARD TITLES ================= */
+
+.modern-card h4{
+
+    margin-bottom:20px;
+
+    color:var(--text);
+
+    font-weight:700;
+
+}
+
+.modern-card h5{
+
+    color:var(--text);
+
+}
+
+.modern-card p{
+
+    color:var(--text-light);
+
+    margin-bottom:0;
+
+}
+/* ==========================================================
+                    PROFILE PAGE
+========================================================== */
+
+.profile-page{
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+}
+
+.profile-cover{
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+    border-radius:24px;
+    padding:45px;
+    color:#fff;
+    box-shadow:var(--shadow);
+}
+
+.profile-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:30px;
+}
+
+.profile-avatar{
+    width:110px;
+    height:110px;
+    border-radius:50%;
+    background:#fff;
+    color:var(--primary);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:40px;
+    font-weight:700;
+}
+
+.profile-info{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:16px 0;
+    border-bottom:1px solid var(--border);
+}
+
+.profile-info:last-child{
+    border-bottom:none;
+}
+
+.profile-info strong{
+    color:var(--text);
+}
+
+.profile-info span{
+    color:var(--text-light);
+}
+
+/* ==========================================================
+                    PROFILE CARD SPACING
+========================================================== */
+
+.col-lg-4 .modern-card,
+.col-lg-8 .modern-card{
+
+    margin-bottom:24px;
+
+}
+/* ==========================================================
+                    MATCHES
+========================================================== */
+
+.matches-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(340px,1fr));
+    gap:22px;
+}
+
+.match-card{
+    background:var(--card);
+    border-radius:20px;
+    padding:25px;
+    box-shadow:var(--shadow);
+    transition:.35s;
+}
+
+.match-card:hover{
+    transform:translateY(-8px);
+}
+
+.match-top{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    margin-bottom:20px;
+}
+
+.initial-circle{
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+    color:#fff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:22px;
+    font-weight:700;
+}
+
+.match-percent{
+    margin-left:auto;
+    background:var(--success);
+    color:#fff;
+    padding:8px 16px;
+    border-radius:50px;
+    font-weight:600;
+}
+
+.match-skills{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:15px;
+}
+
+.match-actions{
+    margin-top:25px;
+    display:flex;
+    gap:12px;
+}
+
+/* ==========================================================
+                    REQUESTS
+========================================================== */
+
+.request-card{
+    background:var(--card);
+    border-radius:20px;
+    padding:25px;
+    margin-bottom:20px;
+    box-shadow:var(--shadow);
+    transition:.3s;
+}
+
+.request-card:hover{
+    transform:translateY(-5px);
+}
+
+.request-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:15px;
+}
+
+.request-body{
+    color:var(--text-light);
+    line-height:1.7;
+}
+
+.request-footer{
+    margin-top:20px;
+    display:flex;
+    gap:12px;
+}
+
+/* ==========================================================
+                    SESSIONS
+========================================================== */
+
+.session-card{
+    background:var(--card);
+    border-radius:20px;
+    padding:25px;
+    margin-bottom:20px;
+    box-shadow:var(--shadow);
+}
+
+.session-date{
+    font-weight:700;
+    color:var(--primary);
+}
+
+.session-status{
+    display:inline-block;
+    padding:8px 16px;
+    border-radius:50px;
+    font-size:13px;
+    font-weight:600;
+}
+
+.session-status.pending{
+    background:#fff3cd;
+    color:#856404;
+}
+
+.session-status.completed{
+    background:#d4edda;
+    color:#155724;
+}
+
+.session-status.cancelled{
+    background:#f8d7da;
+    color:#721c24;
+}
+
+/* ==========================================================
+                    REVIEWS
+========================================================== */
+
+.review-card{
+    background:var(--card);
+    border-radius:20px;
+    padding:25px;
+    margin-bottom:20px;
+    box-shadow:var(--shadow);
+}
+
+.review-stars{
+    color:#FFD700;
+    margin-bottom:10px;
+}
+
+.review-user{
+    font-weight:600;
+    margin-bottom:8px;
+}
+
+.review-text{
+    color:var(--text-light);
+    line-height:1.7;
+}
+
+/* ==========================================================
+                    TABLE
+========================================================== */
+
+.table-modern{
+    width:100%;
+    border-collapse:collapse;
+    background:var(--card);
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+}
+
+.table-modern thead{
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+    color:#fff;
+}
+
+.table-modern th,
+.table-modern td{
+    padding:16px;
+}
+
+.table-modern tbody tr{
+    border-bottom:1px solid var(--border);
+}
+
+.table-modern tbody tr:hover{
+    background:rgba(99,102,241,.05);
+}
+
+/* ==========================================================
+                    FORM
+========================================================== */
+
+.form-card{
+    background:var(--card);
+    border-radius:20px;
+    padding:30px;
+    box-shadow:var(--shadow);
+}
+
+.form-control,
+.form-select{
+    border-radius:14px;
+    border:1px solid var(--border);
+    padding:12px 16px;
+    background:var(--bg);
+    color:var(--text);
+}
+
+.form-control:focus,
+.form-select:focus{
+    border-color:var(--primary);
+    box-shadow:0 0 0 .15rem rgba(99,102,241,.25);
+}
+
+label{
+    font-weight:600;
+    margin-bottom:8px;
+}
+
+/* ==========================================================
+                    BUTTONS
+========================================================== */
+
+.btn-modern{
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+    color:#fff;
+    border:none;
+    padding:12px 22px;
+    border-radius:14px;
+    transition:.3s;
+    text-decoration:none;
+}
+
+.btn-modern:hover{
+    color:#fff;
+    transform:translateY(-3px);
+}
+
+.btn-success-modern{
+    background:linear-gradient(135deg,#22c55e,#16a34a);
+    color:#fff;
+}
+
+.btn-danger-modern{
+    background:linear-gradient(135deg,#ef4444,#dc2626);
+    color:#fff;
+}
+
+.btn-warning-modern{
+    background:linear-gradient(135deg,#f59e0b,#d97706);
+    color:#fff;
+}
+/* ==========================================================
+                    RESPONSIVE DESIGN
+========================================================== */
+
+@media (max-width:1200px){
+
+    .stats-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .dashboard-content{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media (max-width:992px){
+
+    .topbar{
+        padding:0 20px;
+    }
+
+    .page-wrapper{
+        padding:20px;
+    }
+
+    .profile-header{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+/* ================= SKILLS ================= */
+
+    .skills-layout{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .skills-right{
+
+        position:static;
+
+    }ds
+
+}
+
+@media (max-width:768px){
+
+    .sidebar{
+
+        width:80px;
+
+    }
+
+    .sidebar .brand-text,
+    .sidebar .sidebar-menu span,
+    .sidebar .logout-btn span{
+
+        display:none;
+
+    }
+
+    .sidebar .sidebar-menu a{
+
+        justify-content:center;
+
+    }
+
+    .app-main{
+
+        margin-left:80px;
+
+        width:calc(100% - 80px);
+
+    }
+
+    .stats-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .quick-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .dashboard-content{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .hero-banner{
+
+        padding:30px;
+
+    }
+
+    .hero-banner h2{
+
+        font-size:28px;
+
+    }
+
+    .hero-banner p{
+
+        font-size:15px;
+
+    }
+
+}
+
+@media (max-width:576px){
+
+    .topbar{
+
+        padding:0 15px;
+
+        height:70px;
+
+    }
+
+    .page-wrapper{
+
+        padding:15px;
+
+    }
+
+    .profile-text{
+
+        display:none;
+
+    }
+
+    .page-title{
+
+        font-size:20px;
+
+    }
+
+    .modern-card{
+
+        padding:18px;
+
+    }
+
+    .hero-banner{
+
+        padding:22px;
+
+    }
+
+    .hero-banner h2{
+
+        font-size:24px;
+
+    }
+
+    .brand-logo{
+
+        width:48px;
+
+        height:48px;
+
+    }
+
+}
+
+/* ==========================================================
+                    SCROLLBAR
+========================================================== */
+
+::-webkit-scrollbar{
+
+    width:8px;
+
+    height:8px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:var(--bg);
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:linear-gradient(180deg,var(--primary),var(--secondary));
+
+    border-radius:50px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:var(--primary);
+
+}
+
+/* ==========================================================
+                    ANIMATIONS
+========================================================== */
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(25px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+@keyframes zoomIn{
+
+    from{
+
+        opacity:0;
+
+        transform:scale(.9);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:scale(1);
+
+    }
+
+}
+
+@keyframes slideLeft{
+
+    from{
+
+        opacity:0;
+
+        transform:translateX(-40px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateX(0);
+
+    }
+
+}
+
+.animate-up{
+
+    animation:fadeUp .6s ease;
+
+}
+
+.animate-left{
+
+    animation:slideLeft .6s ease;
+
+}
+
+.animate-zoom{
+
+    animation:zoomIn .5s ease;
+
+}
+
+/* ==========================================================
+                    HOVER EFFECTS
+========================================================== */
+
+.modern-card,
+.match-card,
+.request-card,
+.review-card,
+.session-card{
+
+    transition:.35s;
+
+}
+
+.modern-card:hover,
+.match-card:hover,
+.request-card:hover,
+.review-card:hover,
+.session-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 18px 40px rgba(0,0,0,.12);
+
+}
+
+.skill-chip{
+
+    cursor:pointer;
+
+}
+
+.skill-chip:hover{
+
+    transform:scale(1.05);
+
+}
+
+.logout-btn:hover{
+
+    transform:translateY(-2px);
+
+}
+
+.theme-btn:hover{
+
+    transform:rotate(180deg) scale(1.05);
+
+}
+
+/* ==========================================================
+                    UTILITIES
+========================================================== */
+
+.text-primary{
+
+    color:var(--primary)!important;
+
+}
+
+.text-success{
+
+    color:var(--success)!important;
+
+}
+
+.text-danger{
+
+    color:var(--danger)!important;
+
+}
+
+.text-muted{
+
+    color:var(--text-light)!important;
+
+}
+
+.bg-gradient{
+
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+
+    color:#fff;
+
+}
+
+.shadow-card{
+
+    box-shadow:var(--shadow);
+
+}
+
+.rounded-xl{
+
+    border-radius:20px;
+
+}
+
+.w-100{
+
+    width:100%;
+
+}
+
+.mt-20{
+
+    margin-top:20px;
+
+}
+
+.mb-20{
+
+    margin-bottom:20px;
+
+}
+
+.p-20{
+
+    padding:20px;
+
+}
+
+.text-center{
+
+    text-align:center;
+
+}
+
+.d-flex-center{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.skill-info{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+}
+
+.skill-actions{
+
+    display:flex;
+
+    gap:10px;
+
+}
+
+.card-box{
+
+    background:var(--card);
+
+    border-radius:20px;
+
+    padding:24px;
+
+    box-shadow:var(--shadow);
+
+    width:100%;
+
+    overflow:hidden;
+
+}
+.accordion-body{
+
+    padding:20px;
+
+}{
+
+    background:var(--bg);
+
+}
+
+body.dark-theme .accordion-body{
+
+    background:#222d42;
+
+}
+
+/* ==========================================================
+                SKILLS FINAL POLISH
+========================================================== */
+
+/* Smooth Animations */
+
+.skill-card,
+.card-box,
+.skill-chip,
+.toggle,
+.accordion-item{
+
+    transition:all .30s ease;
+
+}
+
+/* Hover */
+
+.card-box:hover{
+
+    box-shadow:0 20px 40px rgba(0,0,0,.12);
+
+}
+
+.skill-chip:hover{
+
+    transform:translateY(-3px) scale(1.03);
+
+}
+
+.toggle:hover{
+
+    transform:translateY(-2px);
+
+}
+
+/* Accordion Animation */
+
+.accordion-collapse{
+    margin-top:8px;	
+    transition:all .35s ease;
+
+}
+
+/* Better Scroll */
+
+.accordion-body{
+
+    max-height:650px;
+
+    overflow-y:auto;
+
+}
+
+/* Scrollbar */
+
+.accordion-body::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+.accordion-body::-webkit-scrollbar-thumb{
+
+    background:linear-gradient(180deg,#5b5ff8,#14b8e8);
+
+    border-radius:30px;
+
+}
+
+/* Better spacing */
+
+.skill-item{
+
+    margin-bottom:18px;
+
+}
+
+/* Selected Card */
+
+.skill-card:has(input:checked){
+
+    border:2px solid var(--primary);
+
+}
+
+/* Better Preview */
+
+#teachPreview,
+#learnPreview{
+
+    min-height:120px;
+
+    align-content:flex-start;
+
+}
+
+/* Empty Preview */
+
+#teachPreview:empty::before,
+#learnPreview:empty::before{
+
+    content:"No Skills Selected";
+
+    color:var(--text-light);
+
+    font-size:14px;
+
+    font-style:italic;
+
+}
+
+/* ==========================================================
+                RESPONSIVE
+========================================================== */
+
+@media(max-width:1200px){
+
+    .skill-card{
+
+        min-height:170px;
+
+    }
+
+}
+
+@media(max-width:992px){
+
+    .page-header{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+    }
+
+    .browse-header{
+
+        flex-direction:column;
+
+        align-items:stretch;
+
+    }
+
+    #skillSearch{
+
+        width:100%;
+
+    }
+
+    .card-box{
+
+        margin-top:20px;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .skill-actions{
+
+        flex-direction:column;
+
+        gap:10px;
+
+    }
+
+    .toggle{
+
+        width:100%;
+
+        justify-content:center;
+
+    }
+
+    .accordion-button{
+
+        font-size:16px;
+
+    }
+
+    .skill-card{
+
+        min-height:auto;
+
+    }
+
+}
+
+@media(max-width:576px){
+
+    .page-header h2{
+
+        font-size:26px;
+
+    }
+
+    .page-header p{
+
+        font-size:14px;
+
+    }
+
+    .card-box{
+
+        padding:20px;
+
+    }
+
+    .skill-info strong{
+
+        font-size:18px;
+
+    }
+
+}
+
+/* ==========================================================
+                DARK MODE FIXES
+========================================================== */
+
+body.dark-theme .accordion-item{
+
+    background:#1f2937;
+
+}
+
+body.dark-theme .accordion-button{
+
+    color:white;
+
+}
+
+body.dark-theme .preview-header h4{
+
+    color:white;
+
+}
+
+body.dark-theme .card-box h4{
+
+    color:white;
+
+}
+
+body.dark-theme .tips-list li{
+
+    color:#cbd5e1;
+
+}
+
+body.dark-theme .skill-info strong{
+
+    color:white;
+
+}
+
+body.dark-theme .skill-info small{
+
+    color:#cbd5e1;
+
+}
+
+/* ==========================================================
+                LIGHT MODE FIXES
+========================================================== */
+
+body.light-theme .accordion-item{
+
+    background:white;
+
+}
+
+body.light-theme .card-box{
+
+    background:white;
+
+}
+
+body.light-theme .skill-card{
+
+    background:white;
+
+}
+
+body.light-theme .skill-info strong{
+
+    color:#1f2937;
+
+}
+
+body.light-theme .skill-info small{
+
+    color:#64748b;
+
+}
+
+body.light-theme .preview-header h4{
+
+    color:#1f2937;
+
+}
+
+/* ==========================================================
+                FINISH
+========================================================== */
+
+/* ==========================================================
+                    END
+========================================================== */
+
+/* ==========================================================
+                    SKILLS PAGE
+========================================================== */
+
+.skills-page{
+
+    animation:fadeUp .6s ease;
+
+}
+
+.page-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:30px;
+
+    flex-wrap:wrap;
+
+    gap:20px;
+
+}
+
+.page-header h2{
+
+    font-size:32px;
+
+    font-weight:700;
+
+    color:var(--text);
+
+    margin-bottom:8px;
+
+}
+
+.page-header p{
+
+    color:var(--text-light);
+
+    margin:0;
+
+}
+
+/* ==========================================================
+                    BROWSE HEADER
+========================================================== */
+
+.browse-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+}
+
+.browse-header h4{
+
+    margin:0;
+
+    color:var(--text);
+
+    font-weight:700;
+
+}
+
+/* ==========================================================
+                    SEARCH BAR
+========================================================== */
+
+#skillSearch{
+
+    width:280px;
+
+    border-radius:40px;
+
+    border:1px solid var(--border);
+
+    background:var(--card);
+
+    color:var(--text);
+
+    padding:13px 20px;
+
+    transition:.3s;
+
+}
+
+#skillSearch::placeholder{
+
+    color:#94a3b8;
+
+}
+
+#skillSearch:focus{
+
+    border-color:var(--primary);
+
+    box-shadow:0 0 0 .2rem rgba(99,102,241,.15);
+
+}
+
+body.dark-theme #skillSearch{
+
+    background:#162032;
+
+    color:#fff;
+
+    border:1px solid #334155;
+
+}
+
+body.dark-theme #skillSearch::placeholder{
+
+    color:#94a3b8;
+
+}
+
+/* ==========================================================
+                    ACCORDION
+========================================================== */
+
+.accordion{
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+.accordion-item{
+
+    border:none;
+
+    background:transparent;
+
+    margin-bottom:16px;
+
+    overflow:hidden;
+
+    border-radius:18px;
+
+}
+.accordion-button{
+
+    min-height:64px;
+
+    font-size:18px;
+
+    font-weight:700;
+
+    color:#fff;
+
+    background:linear-gradient(135deg,#5b5ff8,#14b8e8);
+
+    box-shadow:none;
+
+}
+
+.accordion-button:not(.collapsed){
+
+    color:white;
+
+    background:linear-gradient(135deg,#5b5ff8,#14b8e8);
+
+}
+
+.accordion-button:focus{
+
+    box-shadow:none;
+
+}
+
+.accordion-button::after{
+
+    filter:brightness(0) invert(1);
+
+}
+
+.accordion-body{
+
+    background:var(--card);
+
+    padding:22px;
+
+}
+
+body.dark-theme .accordion-body{
+
+    background:#1f2937;
+
+}
+/* ==========================================================
+                    SKILL CARD
+========================================================== */
+
+.skill-card{
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:20px;
+
+    padding:20px;
+
+    min-height:160px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:space-between;
+
+    transition:.35s ease;
+
+    cursor:pointer;
+
+}
+
+.skill-card:hover{
+
+    transform:translateY(-6px);
+
+    border-color:var(--primary);
+
+    box-shadow:0 15px 35px rgba(99,102,241,.15);
+
+}
+
+body.dark-theme .skill-card{
+
+    background:#1f2937;
+
+    border:1px solid #334155;
+
+}
+
+/* ==========================================================
+                    SKILL INFO
+========================================================== */
+
+.skill-info{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+}
+
+.skill-info strong{
+
+    font-size:20px;
+
+    font-weight:700;
+
+    color:var(--text);
+
+    line-height:1.3;
+
+}
+
+.skill-info small{
+
+    color:var(--text-light);
+
+    font-size:14px;
+
+    font-weight:500;
+
+}
+
+/* ==========================================================
+                    TEACH / LEARN
+========================================================== */
+
+.skill-actions{
+
+    display:flex;
+
+    gap:12px;
+
+    margin-top:18px;
+
+    flex-wrap:wrap;
+
+}
+
+.toggle{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:9px 18px;
+
+    border-radius:50px;
+
+    cursor:pointer;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    transition:.30s ease;
+
+    user-select:none;
+
+    border:2px solid transparent;
+
+}
+
+.toggle input{
+
+    display:none;
+
+}
+
+/* ---------- Teach ---------- */
+
+.toggle.teach{
+
+    background:#dcfce7;
+
+    color:#15803d;
+
+}
+
+.toggle.teach:hover{
+
+    background:#bbf7d0;
+
+}
+
+.toggle.teach:has(input:checked){
+
+    background:#22c55e;
+
+    color:#fff;
+
+}
+
+/* ---------- Learn ---------- */
+
+.toggle.learn{
+
+    background:#ede9fe;
+
+    color:#6d28d9;
+
+}
+
+.toggle.learn:hover{
+
+    background:#ddd6fe;
+
+}
+
+.toggle.learn:has(input:checked){
+
+    background:#7c3aed;
+
+    color:#fff;
+
+}
+
+/* ==========================================================
+                    DARK MODE
+========================================================== */
+
+body.dark-theme .toggle.teach{
+
+    background:#163d2a;
+
+    color:#7ef0b0;
+
+}
+
+body.dark-theme .toggle.learn{
+
+    background:#2d1b55;
+
+    color:#d8b4fe;
+
+}
+
+body.dark-theme .toggle.teach:has(input:checked){
+
+    background:#22c55e;
+
+    color:white;
+
+}
+
+body.dark-theme .toggle.learn:has(input:checked){
+
+    background:#7c3aed;
+
+    color:white;
+
+}
+
+/* ==========================================================
+                    ACTIVE CARD
+========================================================== */
+
+.skill-card:has(.toggle input:checked){
+
+    border-color:#6366f1;
+
+    box-shadow:0 15px 30px rgba(99,102,241,.20);
+
+}
+
+/* ==========================================================
+                    RIGHT PANEL
+========================================================== */
+
+.card-box{
+
+    background:var(--card);
+
+    border-radius:22px;
+
+    padding:25px;
+
+    box-shadow:var(--shadow);
+
+    border:1px solid var(--border);
+
+    margin-bottom:25px;
+
+    transition:.35s;
+
+}
+
+.card-box:hover{
+
+    transform:translateY(-4px);
+
+}
+
+body.dark-theme .card-box{
+
+    background:#1f2937;
+
+    border:1px solid #334155;
+
+}
+
+/* ==========================================================
+                    PREVIEW HEADER
+========================================================== */
+
+.preview-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:18px;
+
+}
+
+.preview-header h4{
+
+    margin:0;
+
+    color:var(--text);
+
+    font-weight:700;
+
+}
+
+/* ==========================================================
+                    COUNTER
+========================================================== */
+
+.count-badge{
+
+    width:36px;
+
+    height:36px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+
+    color:white;
+
+    font-size:14px;
+
+    font-weight:700;
+
+}
+
+/* ==========================================================
+                    SELECTED SKILLS
+========================================================== */
+
+.selected-skills{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:12px;
+
+    align-items:flex-start;
+
+    min-height:70px;
+
+}
+
+/* ==========================================================
+                    SKILL CHIP
+========================================================== */
+
+.skill-chip{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:10px 18px;
+
+    border-radius:30px;
+
+    background:linear-gradient(135deg,#06b6d4,#3b82f6);
+
+    color:white;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    white-space:nowrap;
+
+    transition:.30s;
+
+    cursor:pointer;
+
+}
+
+.skill-chip:hover{
+
+    transform:translateY(-3px);
+
+}
+
+.skill-chip.learn{
+
+    background:linear-gradient(135deg,#7c3aed,#9333ea);
+
+}
+
+/* ==========================================================
+                    EMPTY PREVIEW
+========================================================== */
+
+.selected-skills:empty::before{
+
+    content:"No skills selected";
+
+    color:var(--text-light);
+
+    font-size:14px;
+
+    font-style:italic;
+
+}
+
+/* ==========================================================
+                    TIPS
+========================================================== */
+
+.tips-list{
+
+    margin:0;
+
+    padding-left:18px;
+
+}
+
+.tips-list li{
+
+    color:var(--text-light);
+
+    margin-bottom:12px;
+
+    line-height:1.7;
+
+}
+
+/* ==========================================================
+                    DARK MODE
+========================================================== */
+
+body.dark-theme .skill-chip{
+
+    background:linear-gradient(135deg,#0891b2,#2563eb);
+
+}
+
+body.dark-theme .skill-chip.learn{
+
+    background:linear-gradient(135deg,#7c3aed,#9333ea);
+
+}
+
+/* =======================================================
+   SKILL CARD TEXT
+======================================================= */
+
+.skill-info{
+
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+.skill-info h5{
+
+    margin:0;
+
+    font-size:20px;
+
+    font-weight:700;
+
+    color:#1f2937;
+
+}
+
+.skill-info span{
+
+    font-size:14px;
+
+    color:#6b7280;
+
+}
+
+/* ================= DARK MODE ================= */
+
+body.dark-theme .skill-info h5{
+
+    color:#ffffff;
+
+}
+
+body.dark-theme .skill-info span{
+
+    color:#bfc9d9;
+
+}
+
+/* ==========================================================
+                    BOOTSTRAP MODAL
+========================================================== */
+
+.modal-content{
+
+    background:var(--card);
+
+    color:var(--text);
+
+    border:none;
+
+    border-radius:20px;
+
+}
+
+.modal-header{
+
+    border-bottom:1px solid var(--border);
+
+}
+
+.modal-footer{
+
+    border-top:1px solid var(--border);
+
+}
+
+.modal label{
+
+    color:var(--text);
+
+    font-weight:600;
+
+    margin-bottom:8px;
+
+}
+
+.modal .form-control{
+
+    background:var(--bg);
+
+    color:var(--text);
+
+    border:1px solid var(--border);
+
+}
+
+.modal .form-control:focus{
+
+    border-color:var(--primary);
+
+    box-shadow:none;
+
+}
+
+/* ==========================================================
+                    DARK MODE MODAL
+========================================================== */
+
+body.dark-theme .modal-content{
+
+    background:#1f2937;
+
+    color:#ffffff;
+
+}
+
+body.dark-theme .modal-header{
+
+    border-bottom:1px solid #374151;
+
+}
+
+body.dark-theme .modal-footer{
+
+    border-top:1px solid #374151;
+
+}
+
+body.dark-theme .modal label{
+
+    color:#ffffff;
+
+}
+
+body.dark-theme .modal .form-control{
+
+    background:#111827;
+
+    color:#ffffff;
+
+    border:1px solid #374151;
+
+}
+
+body.dark-theme .modal .form-control::placeholder{
+
+    color:#9ca3af;
+
+}
+
+body.dark-theme .btn-close{
+
+    filter:invert(1);
+
+}
+
+.skills-layout{
+
+    display:grid;
+
+    grid-template-columns:70% 30%;
+
+    gap:24px;
+
+    align-items:start;
+
+    width:100%;
+
+}
+.skills-right{
+
+    width:100%;
+
+    min-width:280px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+    position:sticky;
+
+    top:95px;
+
+    align-self:start;
+
+}
+.skills-left{
+
+    width:100%;
+
+    min-width:0;
+
+}

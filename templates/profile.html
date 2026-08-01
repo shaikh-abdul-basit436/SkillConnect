@@ -1,0 +1,567 @@
+{% extends "base.html" %}
+
+{% block title %}
+
+My Profile
+
+{% endblock %}
+
+{% block page_title %}
+
+My Profile
+
+{% endblock %}
+
+{% block content %}
+
+<div class="profile-page animate-up">
+
+    <div class="profile-cover">
+
+        <div class="cover-overlay">
+
+            <div class="profile-header">
+
+                <div class="profile-avatar">
+
+                    {{ current_user.name[0] }}
+
+                </div>
+
+                <div class="profile-details">
+
+                    <h2>
+
+                        {{ current_user.name }}
+
+                    </h2>
+
+                    <p>
+
+                        {{ current_user.department }}
+
+                        •
+
+                        {{ current_user.year }}
+
+                    </p>
+
+<div class="rating-row">
+
+    <span class="badge bg-warning text-dark">
+
+        ⭐ {{ current_user.rating }}
+
+    </span>
+
+</div>
+
+                </div>
+
+                <div class="profile-actions">
+
+                    <button
+
+                    class="btn-modern"
+
+                    data-bs-toggle="modal"
+
+                    data-bs-target="#editProfileModal">
+
+                        <i class="fa-solid fa-pen"></i>
+
+                        Edit Profile
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="row mt-4">
+
+        <div class="col-lg-4">
+
+            <div class="modern-card animate-up mt-4">
+
+                <h4>
+
+                    About Me
+
+                </h4>
+
+<div class="mb-3"></div>
+                {% if current_user.bio %}
+
+                <p>
+
+                    {{ current_user.bio }}
+
+                </p>
+
+                {% else %}
+
+                <p class="text-muted">
+
+                    No bio added yet.
+
+                </p>
+
+                {% endif %}
+
+                <br>
+
+                <div class="profile-info">
+
+                    <strong>Email</strong>
+
+                    <span>
+
+                        {{ current_user.email }}
+
+                    </span>
+
+                </div>
+
+                <div class="profile-info">
+
+                    <strong>Department</strong>
+
+                    <span>
+
+                        {{ current_user.department }}
+
+                    </span>
+
+                </div>
+
+                <div class="profile-info">
+
+                    <strong>Year</strong>
+
+                    <span>
+
+                        {{ current_user.year }}
+
+                    </span>
+
+                </div>
+
+            </div>
+
+<div class="modern-card animate-up">
+                <h4>
+
+                    Statistics
+
+                </h4>
+
+<div class="mb-3"></div>
+                <div class="stat-row">
+
+                    <span>
+
+                        Teaching Skills
+
+                    </span>
+
+                    <strong>
+
+                        {{ teach_count }}
+
+                    </strong>
+
+                </div>
+
+                <div class="stat-row">
+
+                    <span>
+
+                        Learning Skills
+
+                    </span>
+
+                    <strong>
+
+                        {{ learn_count }}
+
+                    </strong>
+
+                </div>
+
+                <div class="stat-row">
+
+                    <span>
+
+                        Sessions
+
+                    </span>
+
+                    <strong>
+
+                        {{ session_count }}
+
+                    </strong>
+
+                </div>
+
+                <div class="stat-row">
+
+                    <span>
+
+                        Rating
+
+                    </span>
+
+                    <strong>
+
+                        {{ average_rating }}
+
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-8">
+
+<div class="modern-card animate-up mt-4">
+                <h4>
+
+                    Skills I Can Teach
+
+                </h4>
+
+                <div class="skill-container">
+
+                    {% for skill in teach_skills %}
+
+                    <span class="skill-chip">
+
+                        {{ skill.skill_name }}
+
+                    </span>
+
+                    {% else %}
+
+                    <p class="empty-text">
+
+                        No skills added.
+
+                    </p>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+<div class="modern-card animate-up">
+                <h4>
+
+                    Skills I Want To Learn
+
+                </h4>
+
+                <div class="skill-container">
+
+                    {% for skill in learn_skills %}
+
+                    <span class="skill-chip learn">
+
+                        {{ skill.skill_name }}
+
+                    </span>
+
+                    {% else %}
+
+                    <p class="empty-text">
+
+                        No learning skills added.
+
+                    </p>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+<div class="modern-card animate-up mt-4">
+                <h4>
+
+                    Recent Reviews
+
+                </h4>
+                {% if recent_reviews %}
+
+                    {% for review in recent_reviews %}
+
+                    <div class="review-item">
+
+                        <div class="review-avatar">
+
+                            {{ current_user.name[0] }}
+
+                        </div>
+
+                        <div class="review-body">
+
+                            <div class="review-rating">
+
+                                {% for i in range(review.rating) %}
+
+                                <i class="fa-solid fa-star"></i>
+
+                                {% endfor %}
+
+                            </div>
+
+                            <p>
+
+                                {{ review.comment }}
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    {% endfor %}
+
+                {% else %}
+
+<div class="empty-box text-center p-4">
+                        <i class="fa-regular fa-comment"></i>
+
+                        <h5>
+
+                            No Reviews Yet
+
+                        </h5>
+
+                        <p>
+
+                            Your received reviews will appear here.
+
+                        </p>
+
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+<div class="modern-card animate-up mt-4">
+                <h4>
+
+                    Upcoming Sessions
+
+                </h4>
+
+                {% if session_count > 0 %}
+
+<div class="session-card animate-up">
+                        <i class="fa-solid fa-calendar-days"></i>
+
+                        <div>
+
+                            <strong>
+
+                                {{ session_count }}
+
+                                Session(s)
+
+                            </strong>
+
+                            <p>
+
+                                Check the Sessions page for complete details.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                {% else %}
+
+<div class="empty-box text-center p-4">
+                        <i class="fa-regular fa-calendar"></i>
+
+                        <h5>
+
+                            No Sessions Scheduled
+
+                        </h5>
+
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= Edit Profile Modal ================= -->
+
+<div
+class="modal fade"
+id="editProfileModal"
+tabindex="-1">
+
+<div class="modal-dialog modal-lg">
+
+<div class="modal-content">
+
+<div class="modal-header">
+
+<h4>
+
+Edit Profile
+
+</h4>
+
+<button
+class="btn-close"
+data-bs-dismiss="modal">
+
+</button>
+
+</div>
+
+<form
+method="POST"
+action="/profile/update">
+
+<div class="modal-body">
+
+<div class="row">
+
+<div class="col-md-6">
+
+<label>
+
+Name
+
+</label>
+
+<input
+
+type="text"
+
+name="name"
+
+class="form-control"
+
+value="{{ current_user.name }}">
+
+</div>
+
+<div class="col-md-6">
+
+<label>
+
+Department
+
+</label>
+
+<input
+
+type="text"
+
+name="department"
+
+class="form-control"
+
+value="{{ current_user.department }}">
+
+</div>
+
+</div>
+
+<div class="mt-3">
+
+<label>
+
+Year
+
+</label>
+
+<input
+
+type="text"
+
+name="year"
+
+class="form-control"
+
+value="{{ current_user.year }}">
+
+</div>
+
+<div class="mt-3">
+
+<label>
+
+Bio
+
+</label>
+
+<textarea
+
+name="bio"
+
+rows="5"
+
+class="form-control">{{ current_user.bio }}</textarea>
+
+</div>
+
+</div>
+
+<div class="modal-footer">
+
+<button
+
+class="btn btn-secondary"
+
+data-bs-dismiss="modal"
+
+type="button">
+
+Cancel
+
+</button>
+
+<button
+
+class="btn-modern"
+
+type="submit">
+
+Save Changes
+
+</button>
+
+</div>
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}
