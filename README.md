@@ -26,9 +26,6 @@ Designed with an intuitive user interface and a modular backend architecture, Sk
 - CSS3
 - JavaScript
 
-**Database**
-- SQLite
-
 ## 🚀 Installation
 
 ```bash
